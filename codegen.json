@@ -1,0 +1,9 @@
+{
+  "schema": ".cache/typegen/schema.graphql",
+  "documents": "./src/helpers/*Query.ts",
+  "generates": {
+    "./src/generated/graphql.ts": {
+      "plugins": ["typescript", "typescript-operations"]
+    }
+  }
+}
