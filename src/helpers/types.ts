@@ -6,6 +6,7 @@ export interface Image {
 
 export interface GatsbyImageType {
   gatsbyImageData: IGatsbyImageData | undefined;
+  title?: string;
 }
 
 export interface LongDescription {
@@ -21,14 +22,18 @@ export interface Description {
 }
 
 export interface Project {
+  category: string[];
   created: String;
   image: GatsbyImageType;
+  images: GatsbyImageType[];
   longDescription: LongDescription;
   shortDescription: ShortDescription;
   slug: string;
   techStack: String[];
   title: string;
   url: string;
+  metaData: string;
+  participants?: string[];
 }
 
 export interface AllContentfulProjects {
@@ -38,6 +43,7 @@ export interface AllContentfulProjects {
 export interface ContentfulProjectPage {
   pageTitle: string;
   projectIntro: ProjectIntro;
+  metaData: string;
 }
 
 export interface ProjectIntro {
@@ -78,6 +84,7 @@ export interface ContentfulAbout {
   linkedIn?: String;
   biography?: String;
   skills?: String[];
+  metaData: string;
 }
 
 export interface ContentfulHomePage {
@@ -85,6 +92,7 @@ export interface ContentfulHomePage {
   heading: String;
   image: GatsbyImageType;
   shortDescription?: ShortDescription;
+  metaData: string;
 }
 
 export interface HomeData {
@@ -94,4 +102,13 @@ export interface HomeData {
 export interface Links {
   name: string;
   link: string;
+}
+
+export interface Labels {
+  visitSite: string;
+  searchSite: string;
+  readMore: string;
+  learnMore: string;
+  explore: string;
+  contactMe: string;
 }

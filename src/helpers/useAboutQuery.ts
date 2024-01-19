@@ -18,6 +18,7 @@ export const aboutQuery = graphql`
       name
       biography
       skills
+      metaData
     }
     allContentfulEducation {
       nodes {

@@ -37,7 +37,9 @@ const Header = () => {
       </ul>
       <header className="global-header-container">
         {/* Ska vara en logo som går till startsidan */}
-        <span className="global-header">Portfolio</span>
+        <Link to="/" className="global-header">
+          Portfolio
+        </Link>
         <p>Klara Bryntesson</p>
       </header>
       <ul className="nav-list">
@@ -57,7 +59,7 @@ const Header = () => {
         <ul className={`mobile-nav-list ${isMenuOpen ? "open" : ""}`}>
           {links.map((link, index) => (
             <>
-              <li>
+              <li key={link.link}>
                 <Link className="nav-links" to={link.link}>
                   {link.name}
                 </Link>

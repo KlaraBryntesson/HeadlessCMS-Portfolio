@@ -2,10 +2,19 @@ import { graphql, useStaticQuery } from "gatsby";
 
 export const projectsQuery = graphql`
   query {
-    allContentfulProjects {
+    allContentfulProjects(sort: { created: DESC }) {
       nodes {
+        category
         created(formatString: "")
         image {
+          gatsbyImageData(
+            formats: [AUTO, WEBP, AVIF]
+            placeholder: BLURRED
+            layout: FULL_WIDTH
+          )
+        }
+        images {
+          title
           gatsbyImageData(
             formats: [AUTO, WEBP, AVIF]
             placeholder: BLURRED
@@ -15,6 +24,7 @@ export const projectsQuery = graphql`
         longDescription {
           raw
         }
+        metaData
         shortDescription {
           shortDescription
         }
@@ -29,6 +39,7 @@ export const projectsQuery = graphql`
       projectIntro {
         projectIntro
       }
+      metaData
     }
   }
 `;

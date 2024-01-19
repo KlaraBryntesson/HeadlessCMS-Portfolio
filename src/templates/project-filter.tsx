@@ -9,7 +9,7 @@ import ProjectImage from "../components/ProjectImage";
 
 const FilterProjects: React.FC<PageProps<Data>> = ({ data }) => {
   return (
-    <Layout title="Portfolio">
+    <Layout metaData={"Test"} title="Portfolio">
       {data.allContentfulProjects.nodes.map((project) => {
         const imageData = project.image.gatsbyImageData as ImageDataLike;
         const image = getImage(imageData);

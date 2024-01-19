@@ -8,6 +8,7 @@ export const homeQuery = graphql`
         shortDescription
       }
       heading
+      metaData
       image {
         gatsbyImageData(
           formats: [AUTO, WEBP, AVIF]

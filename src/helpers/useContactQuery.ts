@@ -10,6 +10,7 @@ export const contactQuery = graphql`
       email
       github
       linkedIn
+      metaData
     }
   }
 `;

@@ -1,15 +1,11 @@
-// import * as React from "react";
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-import { Link, PageProps } from "gatsby";
+import { PageProps } from "gatsby";
 import Layout from "../components/layout";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { useContactQuery } from "../helpers/useContactQuery";
 import { emailJsConfig } from "../helpers/emailjsCredentials";
 import PrimaryButton from "../components/PrimaryButton";
-
-// import { StaticImage } from "gatsby-plugin-image";
 
 const ContactPage: React.FC<PageProps> = ({ data }) => {
   const [formData, setFormData] = useState({
@@ -52,7 +48,7 @@ const ContactPage: React.FC<PageProps> = ({ data }) => {
   };
 
   return (
-    <Layout title={contact.pageTitle}>
+    <Layout metaData={contact.metaData} title={contact.pageTitle}>
       <div className="contact-wrapper">
         <div className="contact-container">
           <p>{contact.shortDescription.shortDescription}</p>

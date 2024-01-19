@@ -79,7 +79,7 @@ const AboutPage: React.FC<PageProps> = () => {
   });
 
   return (
-    <Layout title={about.pageTitle}>
+    <Layout metaData={about.metaData} title={about.pageTitle}>
       <div className="intro-container about-intro-container">
         <div className="about-image-div">
           <ProjectImage className="about-image" image={image} />
@@ -93,7 +93,11 @@ const AboutPage: React.FC<PageProps> = () => {
       </div>
       <div className="about-skills-container">
         {about.skills &&
-          about.skills.map((skill) => <p className="about-skills">{skill}</p>)}
+          about.skills.map((skill, index) => (
+            <div key={index}>
+              <p className="about-skills">{skill}</p>
+            </div>
+          ))}
       </div>
       <div className="about-description-container">
         {about.description &&

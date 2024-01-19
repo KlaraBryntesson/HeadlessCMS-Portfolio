@@ -8,10 +8,11 @@ import {
 
 interface ProjectImageProps {
   image?: IGatsbyImageData;
+  alt?: string;
   className?: string;
 }
 
-const ProjectImage: React.FC<ProjectImageProps> = ({ image }) => {
+const ProjectImage: React.FC<ProjectImageProps> = ({ image, alt }) => {
   const imageData = image as ImageDataLike;
   const newImage = getImage(imageData);
 
@@ -22,7 +23,7 @@ const ProjectImage: React.FC<ProjectImageProps> = ({ image }) => {
   return (
     <GatsbyImage
       image={newImage}
-      alt="hello"
+      alt={alt ? alt : "Image"}
       style={{ width: "100%", height: "100%" }}
     />
   );
