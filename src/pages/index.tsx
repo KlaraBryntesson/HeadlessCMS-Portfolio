@@ -8,6 +8,7 @@ import { ImageDataLike, getImage } from "gatsby-plugin-image";
 import ProjectImage from "../components/ProjectImage";
 import { useLabelsQuery } from "../helpers/useLabelsQuery";
 import { useHomeQuery } from "../helpers/useHomeQuery";
+import styled from "styled-components";
 
 const IndexPage: React.FC<PageProps> = () => {
   const labelsData = useLabelsQuery();
@@ -18,7 +19,7 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <Layout metaData={home.metaData} title={home.pageTitle}>
-      <div className="intro-container home-intro-container">
+      <IntroContainer className="intro-container">
         <div className="home-intro-div home-intro-div1">
           <div className=" home-image-div">
             <ProjectImage image={image} />
@@ -31,9 +32,30 @@ const IndexPage: React.FC<PageProps> = () => {
             <Link to="/about">{labels.learnMore}</Link>
           </PrimaryButton>
         </div>
-      </div>
+      </IntroContainer>
     </Layout>
   );
 };
 
 export default IndexPage;
+
+const IntroContainer = styled.div`
+  flex-direction: row;
+  min-height: 600px;
+  padding-top: var(--spacing-10);
+
+  @media (max-width: 1050px) {
+    min-height: 500px;
+  }
+
+  @media (max-width: 850px) {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    min-height: 1000px;
+    padding-top: var(--spacing-12);
+  }
+
+  @media (max-width: 500px) {
+    padding-top: var(--spacing-8);
+  }
+`;

@@ -6,6 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useContactQuery } from "../helpers/useContactQuery";
 import { emailJsConfig } from "../helpers/emailjsCredentials";
 import PrimaryButton from "../components/PrimaryButton";
+import { ContefulContact } from "../helpers/types";
 
 const ContactPage: React.FC<PageProps> = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +16,7 @@ const ContactPage: React.FC<PageProps> = () => {
   });
 
   const contactData = useContactQuery();
-  const contact = contactData.contentfulContact;
+  const contact: ContefulContact = contactData.contentfulContact;
 
   // Handle changes in form fields
   const handleChange = (

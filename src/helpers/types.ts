@@ -87,6 +87,15 @@ export interface ContentfulAbout {
   metaData: string;
 }
 
+export interface ContefulContact {
+  pageTitle: string;
+  shortDescription: ShortDescription;
+  email: string;
+  github: string;
+  linkedIn: string;
+  metaData: string;
+}
+
 export interface ContentfulHomePage {
   pageTitle: string;
   heading: String;

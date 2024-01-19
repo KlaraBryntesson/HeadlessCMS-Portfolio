@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
-import { Links } from "../helpers/types";
+import { ContentfulAbout, Links } from "../helpers/types";
+import { useAboutQuery } from "../helpers/useAboutQuery";
 
 const Header = () => {
+  const aboutData = useAboutQuery();
+  const about: ContentfulAbout = aboutData.contentfulAbout;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const data = useStaticQuery(graphql`
     query {
@@ -36,11 +39,10 @@ const Header = () => {
         ))}
       </ul>
       <header className="global-header-container">
-        {/* Ska vara en logo som går till startsidan */}
         <Link to="/" className="global-header">
           Portfolio
         </Link>
-        <p>Klara Bryntesson</p>
+        <p>{about.name}</p>
       </header>
       <ul className="nav-list">
         {secondLinks.map((link) => (

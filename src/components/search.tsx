@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
-import { Index } from "elasticlunr";
+import { Index, SerialisedIndexData } from "elasticlunr";
 import { Link } from "gatsby";
 import styled from "styled-components";
 // import lunr from 'lunr';
@@ -13,13 +13,13 @@ interface SearchResult {
 }
 
 interface SearchProps {
-  searchIndex: any; // Replace 'any' with the actual type of your searchIndex
+  searchIndex: SerialisedIndexData<Number>;
 }
 
 const Search: React.FC<SearchProps> = ({ searchIndex }) => {
   const [query, setQuery] = useState<string>("");
   const [results, setResults] = useState<SearchResult[]>([]);
-  let index: any; // Replace 'any' with the actual type of your lunr index
+  let index: any;
 
   console.log(searchIndex);
 

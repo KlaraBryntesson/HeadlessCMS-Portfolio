@@ -5,6 +5,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import { useLabelsQuery } from "../helpers/useLabelsQuery";
 import { Labels } from "../helpers/types";
 import SearchField from "../components/searchfield";
+import styled from "styled-components";
 
 const NotFoundPage: React.FC<PageProps> = () => {
   const wrongQuery = use404Query();
@@ -13,17 +14,17 @@ const NotFoundPage: React.FC<PageProps> = () => {
   const labels: Labels = labelsData.contentfulLabels;
   return (
     <main>
-      <div className="wrong-intro-div">
+      <StyledDiv>
         <div>
-          <h1 className="wrong-heading">{query.pageTitle}</h1>
-          <p className="wrong-description">{query.description}</p>
+          <StyledHeading>{query.pageTitle}</StyledHeading>
+          <StyledParagraph>{query.description}</StyledParagraph>
           <br />
           <PrimaryButton>
             <Link to="/">{labels.backToHome}</Link>
           </PrimaryButton>
         </div>
         <SearchField />
-      </div>
+      </StyledDiv>
     </main>
   );
 };
@@ -31,3 +32,27 @@ const NotFoundPage: React.FC<PageProps> = () => {
 export default NotFoundPage;
 
 export const Head: HeadFC = () => <title>Not found</title>;
+
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: space-between;
+  padding-top: var(--spacing-32);
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const StyledHeading = styled.h1`
+  font-size: var(--fontSize-11);
+  position: static;
+`;
+
+const StyledParagraph = styled.p`
+  font-size: var(--fontSize-3);
+`;
