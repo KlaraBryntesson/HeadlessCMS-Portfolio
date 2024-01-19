@@ -111,4 +111,6 @@ export interface Labels {
   learnMore: string;
   explore: string;
   contactMe: string;
+  backToHome: string;
+  collaborators: string;
 }

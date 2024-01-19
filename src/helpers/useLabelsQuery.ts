@@ -9,6 +9,8 @@ export const labelQuery = graphql`
       learnMore
       explore
       contactMe
+      backToHome
+      collaborators
     }
   }
 `;

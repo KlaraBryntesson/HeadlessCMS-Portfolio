@@ -24,7 +24,7 @@ const ProjectPage = (props: ProjectPageProps) => {
   const labels: Labels = labelsData.contentfulLabels;
   const projectImages = project.images;
   const imageData = project.image.gatsbyImageData as ImageDataLike;
-  const image = getImage(imageData);
+  // const image = getImage(imageData);
   const [currentImage, setCurrentImage] = useState(0);
 
   const prevImage = () => {
@@ -50,7 +50,7 @@ const ProjectPage = (props: ProjectPageProps) => {
   return (
     <Layout metaData={project.metaData} header={true} title={project.title}>
       <div className="intro-container project-intro-container">
-        <div className="intro-div project-intro-div">
+        <div className="intro-div project-intro-div project-intro-div1">
           <div className="project-image-div">
             {projectImages.length > 0 && (
               <ProjectImage
@@ -66,7 +66,7 @@ const ProjectPage = (props: ProjectPageProps) => {
             </ChangeButton>
           </div>
         </div>
-        <div className="intro-div project-intro-div">
+        <div className="intro-div project-intro-div project-intro-div2">
           <div className="project-description-div">
             <div>
               {documentToReactComponents(
@@ -75,7 +75,7 @@ const ProjectPage = (props: ProjectPageProps) => {
             </div>
             {project.participants && (
               <>
-                <h3>Collaborators</h3>
+                <h3>{labels.collaborators}</h3>
                 <ul>
                   {project.participants?.map((participant) => (
                     <li key={participant}>{participant}</li>
