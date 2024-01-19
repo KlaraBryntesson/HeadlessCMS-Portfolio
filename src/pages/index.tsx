@@ -3,14 +3,13 @@ import { PageProps, Link } from "gatsby";
 import Layout from "../components/layout";
 import "../styles.css";
 import PrimaryButton from "../components/PrimaryButton";
-import SecondaryButton from "../components/ChangeButton";
-import { ContentfulHomePage, HomeData, Labels } from "../helpers/types";
+import { ContentfulHomePage, Labels } from "../helpers/types";
 import { ImageDataLike, getImage } from "gatsby-plugin-image";
 import ProjectImage from "../components/ProjectImage";
 import { useLabelsQuery } from "../helpers/useLabelsQuery";
 import { useHomeQuery } from "../helpers/useHomeQuery";
 
-const IndexPage: React.FC<PageProps<HomeData>> = ({ data }) => {
+const IndexPage: React.FC<PageProps> = () => {
   const labelsData = useLabelsQuery();
   const homeData = useHomeQuery();
   const labels: Labels = labelsData.contentfulLabels;
@@ -33,26 +32,8 @@ const IndexPage: React.FC<PageProps<HomeData>> = ({ data }) => {
           </PrimaryButton>
         </div>
       </div>
-
-      {/* <SecondaryButton>
-        <Link to="/contact">{labels.contactMe}</Link>
-      </SecondaryButton> */}
-
-      {/* <p className="first">HOME</p>
-      <p className="second">HOME</p>
-      <p className="third">HOME</p>
-      <p className="fourth">HOME</p>
-      <p className="fifth">HOME</p>
-      <p className="sixth">HOME</p>
-      <p className="seventh">HOME</p>
-      <p className="eighth">HOME</p>
-      <p className="nineth">HOME</p>
-      <p className="tenth">HOME</p>
-      <p className="eleventh">HOME</p> */}
     </Layout>
   );
 };
 
 export default IndexPage;
-
-// export const Head: HeadFC = () => <title>Klara Bryntesson | Home</title>;

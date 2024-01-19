@@ -41,8 +41,6 @@ const AboutPage: React.FC<PageProps> = () => {
   const experienceData: Education[] = aboutData.allContentfulEducation.nodes;
   const image = getImage(about.images?.[0]?.gatsbyImageData as ImageDataLike);
 
-  console.log(image);
-
   let educationData: Experience[] = [];
   let workData: Experience[] = [];
 
@@ -83,9 +81,6 @@ const AboutPage: React.FC<PageProps> = () => {
       <div className="intro-container about-intro-container">
         <div className="about-image-div">
           <ProjectImage className="about-image" image={image} />
-          {/* {aboutData.images && (
-            <img className="about-image" src={aboutData.images[0].url} alt="" />
-          )} */}
         </div>
         <div className="intro-div about-intro-div">
           <p className="about-intro">{about.biography}</p>
@@ -124,11 +119,8 @@ const AboutPage: React.FC<PageProps> = () => {
           </ul>
         </div>
       </div>
-      {/* -- För att lägga in statiska bilder:
-      <StaticImage alt="en bild" src="../images/profile-pic.png" /> */}
     </Layout>
   );
 };
 
-// export const Head = () => <title>Klara Bryntesson | About</title>;
 export default AboutPage;

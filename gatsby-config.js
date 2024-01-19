@@ -1,3 +1,9 @@
+import dotenv from "dotenv";
+
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
+
 module.exports = {
   siteMetadata: {
     title: `Project Portfolio`,
@@ -29,8 +35,8 @@ module.exports = {
     {
       resolve: "gatsby-source-contentful",
       options: {
-        accessToken: "AiSOO3khgETWNzANTBh0oE92HnZwWEjUEzDlJkAhDxA",
-        spaceId: "n1i876szb4zn",
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
       },
     },
     {

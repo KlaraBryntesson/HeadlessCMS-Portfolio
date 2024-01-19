@@ -9,17 +9,21 @@ import ProjectImage from "../components/ProjectImage";
 import { useLabelsQuery } from "../helpers/useLabelsQuery";
 import { useProjectsQuery } from "../helpers/useProjectsQuery";
 
-const ProjectsPage: React.FC<PageProps<Data>> = ({ data }) => {
+const ProjectsPage: React.FC<PageProps> = () => {
   const labelsData = useLabelsQuery();
   const projectData = useProjectsQuery();
   const labels: Labels = labelsData.contentfulLabels;
   const projects: Project[] = projectData.allContentfulProjects.nodes;
   const projectPage: ContentfulProjectPage = projectData.contentfulProjectPage;
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // Generating unique categories from projects
   const categories = [
     "All",
     ...new Set(projects.flatMap((project) => project.category)),
   ];
+
+  // Filtering projects based on selected category
   const filteredProjects =
     selectedCategory === "All"
       ? projects
@@ -27,6 +31,7 @@ const ProjectsPage: React.FC<PageProps<Data>> = ({ data }) => {
           project.category.some((category) => category === selectedCategory)
         );
 
+  // Scroll to the projects section smoothly
   const scrollDown = () => {
     const projectsList = document.getElementById("projects");
 
@@ -52,6 +57,8 @@ const ProjectsPage: React.FC<PageProps<Data>> = ({ data }) => {
           <p>{projectPage.projectIntro.projectIntro}</p>
         </div>
       </div>
+
+      {/* Categories for filtering projects */}
       <div className="projects-list-categories">
         {categories.map((categoryOption) => (
           <PrimaryButton
@@ -63,6 +70,8 @@ const ProjectsPage: React.FC<PageProps<Data>> = ({ data }) => {
           </PrimaryButton>
         ))}
       </div>
+
+      {/* List of projects */}
       <ul id="projects" className="new-projects-list">
         {filteredProjects.map((project) => {
           const image = getImage(
@@ -71,6 +80,7 @@ const ProjectsPage: React.FC<PageProps<Data>> = ({ data }) => {
           const date = new Date(project.created as string);
           const year = date.getFullYear();
           const month = date.toLocaleString("en-US", { month: "short" });
+
           return (
             <li key={project.title} className="new-projects-list-item">
               <Link to={`/${project.slug}`} itemProp="url">
@@ -94,7 +104,6 @@ const ProjectsPage: React.FC<PageProps<Data>> = ({ data }) => {
                       <h2>
                         <Link to={`/${project.slug}`} itemProp="url">
                           {project.title}
-                          {/* <span itemProp="headline">{project.title}</span> */}
                         </Link>
                       </h2>
                       <p className="project-description">

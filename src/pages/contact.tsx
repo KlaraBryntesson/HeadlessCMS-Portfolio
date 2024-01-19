@@ -7,21 +7,24 @@ import { useContactQuery } from "../helpers/useContactQuery";
 import { emailJsConfig } from "../helpers/emailjsCredentials";
 import PrimaryButton from "../components/PrimaryButton";
 
-const ContactPage: React.FC<PageProps> = ({ data }) => {
+const ContactPage: React.FC<PageProps> = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+
   const contactData = useContactQuery();
   const contact = contactData.contentfulContact;
 
+  // Handle changes in form fields
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -30,6 +33,7 @@ const ContactPage: React.FC<PageProps> = ({ data }) => {
       return;
     }
 
+    // Use emailjs to send the email
     emailjs
       .send(
         emailJsConfig.serviceId,
@@ -88,11 +92,8 @@ const ContactPage: React.FC<PageProps> = ({ data }) => {
           </div>
         </div>
       </div>
-      {/* -- För att lägga in statiska bilder:
-      <StaticImage alt="en bild" src="../images/profile-pic.png" /> */}
     </Layout>
   );
 };
 
-export const Head = () => <title>Klara Bryntesson | Contact</title>;
 export default ContactPage;
