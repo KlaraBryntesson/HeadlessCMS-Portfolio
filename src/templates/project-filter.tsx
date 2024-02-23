@@ -10,11 +10,11 @@ import ProjectImage from "../components/ProjectImage";
 const FilterProjects: React.FC<PageProps<Data>> = ({ data }) => {
   return (
     <Layout metaData={"Test"} title="Portfolio">
-      {data.allContentfulProjects.nodes.map((project) => {
+      {data.allContentfulProjects.nodes.map((project, index) => {
         const imageData = project.image.gatsbyImageData as ImageDataLike;
         const image = getImage(imageData);
         return (
-          <div>
+          <div key={index}>
             <h1>
               <Link to={`/${project.slug}`}>{project.title}</Link>
             </h1>

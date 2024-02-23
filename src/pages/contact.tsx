@@ -35,21 +35,23 @@ const ContactPage: React.FC<PageProps> = () => {
     }
 
     // Use emailjs to send the email
-    emailjs
-      .send(
-        emailJsConfig.serviceId,
-        emailJsConfig.templateId,
-        formData,
-        emailJsConfig.publicKey
-      )
-      .then((response) => {
-        console.log("Email sent", response);
-        alert("Your message has been sent!");
-      })
-      .catch((error) => {
-        console.error("Failed to send", error);
-        alert("Something went wrong! Please try again");
-      });
+    if (process.env.EMAILJS_SERVICE_ID && process.env.EMAILJS_TEMPLATE_ID) {
+      emailjs
+        .send(
+          process.env.EMAILJS_SERVICE_ID?.toString(),
+          process.env.EMAILJS_TEMPLATE_ID?.toString(),
+          formData,
+          process.env.EMAILJS_PUBLIC_KEY
+        )
+        .then((response) => {
+          console.log("Email sent", response);
+          alert("Your message has been sent!");
+        })
+        .catch((error) => {
+          console.error("Failed to send", error);
+          alert("Something went wrong! Please try again");
+        });
+    }
   };
 
   return (
