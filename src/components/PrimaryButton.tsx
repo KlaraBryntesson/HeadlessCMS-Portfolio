@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles.css";
-import styled from "styled-components";
+import styled, { StyleSheetManager } from "styled-components";
 
 interface ButtonProps {
   active?: boolean;
@@ -9,9 +9,13 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
+interface StyledProps {
+  selected?: boolean;
+}
+
 const PrimaryButton: React.FC<ButtonProps> = (props) => {
   return (
-    <Button active={props.active} onClick={props.onClick}>
+    <Button selected={props.active} type={props.type} onClick={props.onClick}>
       {props.children}
     </Button>
   );
@@ -19,9 +23,9 @@ const PrimaryButton: React.FC<ButtonProps> = (props) => {
 
 export default PrimaryButton;
 
-const Button = styled.button<ButtonProps>`
+const Button = styled.button<StyledProps>`
   background-color: ${(props) =>
-    props.active ? `var(--color-orange)` : `var(--color-lighter-pink)`};
+    props.selected ? `var(--color-orange)` : `var(--color-lighter-pink)`};
   border: none;
   /* border: 2px solid var(--color-dark-orange); */
   color: var(--color-darker-text);

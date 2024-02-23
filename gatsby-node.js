@@ -54,7 +54,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     filter.forEach((project) => {
       project.techStack.forEach((skill) => {
         const lowerCaseSkill = skill.toLowerCase();
-        console.log(skill);
         createPage({
           path: `/tech-stack/${lowerCaseSkill}/`,
           component: filterProjects,

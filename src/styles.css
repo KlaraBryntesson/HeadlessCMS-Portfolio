@@ -985,9 +985,17 @@ nav {
     top: 0;
   }
 
+  .mobile-nav-list div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
   .mobile-nav-list hr {
     background: var(--color-beige);
     height: 0.5px;
+    margin-top: var(--spacing-5);
     width: 10%;
   }
 

@@ -19,7 +19,7 @@ const NotFoundPage: React.FC<PageProps> = () => {
           <StyledHeading>{query.pageTitle}</StyledHeading>
           <StyledParagraph>{query.description}</StyledParagraph>
           <br />
-          <PrimaryButton>
+          <PrimaryButton type="button">
             <Link to="/">{labels.backToHome}</Link>
           </PrimaryButton>
         </div>

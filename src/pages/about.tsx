@@ -14,6 +14,7 @@ interface Experience {
   fromYear: number;
   toYear: number | string;
   description: string;
+  yearDifference: number;
 }
 
 const ExperienceComponent: React.FC<{ experience: Experience }> = ({
@@ -42,6 +43,7 @@ const AboutPage: React.FC<PageProps> = () => {
   const about: ContentfulAbout = aboutData.contentfulAbout;
   const experienceData: Education[] = aboutData.allContentfulEducation.nodes;
   const image = getImage(about.images?.[0]?.gatsbyImageData as ImageDataLike);
+  const currentYear = new Date().getFullYear();
 
   // Separate education and work experience data
   let educationData: Experience[] = [];
@@ -61,6 +63,8 @@ const AboutPage: React.FC<PageProps> = () => {
       toYear = "Ongoing";
     }
 
+    experience.yearDifference = Math.abs(fromYear - currentYear);
+
     // Categorize data into education or work
     if (experience.isEducation) {
       educationData.push({
@@ -69,6 +73,7 @@ const AboutPage: React.FC<PageProps> = () => {
         fromYear: fromYear,
         toYear: toYear,
         description: experience.description.description,
+        yearDifference: experience.yearDifference,
       });
     } else {
       workData.push({
@@ -77,9 +82,13 @@ const AboutPage: React.FC<PageProps> = () => {
         fromYear: fromYear,
         toYear: toYear,
         description: experience.description.description,
+        yearDifference: experience.yearDifference,
       });
     }
   });
+
+  educationData.sort((a, b) => a.yearDifference - b.yearDifference);
+  workData.sort((a, b) => a.yearDifference - b.yearDifference);
 
   return (
     <Layout metaData={about.metaData} title={about.pageTitle}>

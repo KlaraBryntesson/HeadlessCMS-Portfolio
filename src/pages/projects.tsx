@@ -50,7 +50,9 @@ const ProjectsPage: React.FC<PageProps> = () => {
       <div className="intro-container projects-intro-container">
         <div className="intro-div">
           <div className="projects-button-container">
-            <PrimaryButton onClick={scrollDown}>{labels.explore}</PrimaryButton>
+            <PrimaryButton type="button" onClick={scrollDown}>
+              {labels.explore}
+            </PrimaryButton>
           </div>
         </div>
         <div className="intro-div projects-intro-div">
@@ -62,9 +64,10 @@ const ProjectsPage: React.FC<PageProps> = () => {
       <div className="projects-list-categories">
         {categories.map((categoryOption) => (
           <PrimaryButton
+            type="button"
             key={categoryOption}
             onClick={() => setSelectedCategory(categoryOption)}
-            active={selectedCategory === categoryOption}
+            active={Boolean(selectedCategory === categoryOption)}
           >
             {categoryOption}
           </PrimaryButton>
@@ -101,11 +104,7 @@ const ProjectsPage: React.FC<PageProps> = () => {
                         <span> {year}</span>
                         <hr />
                       </div>
-                      <h2>
-                        <Link to={`/${project.slug}`} itemProp="url">
-                          {project.title}
-                        </Link>
-                      </h2>
+                      <h2>{project.title}</h2>
                       <p className="project-description">
                         {project.shortDescription.shortDescription}
                       </p>

@@ -12,9 +12,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = (props) => {
-  console.log(props.metaData);
   return (
-    // <div className="global-wrapper" data-is-root-path={isRootPath}>
     <div>
       <Helmet>
         <title>{`Klara Bryntesson | ${props.title}`}</title>
@@ -28,7 +26,6 @@ const Layout: React.FC<LayoutProps> = (props) => {
       <main>{props.children}</main>
       <Footer />
     </div>
-    // </div>
   );
 };
 

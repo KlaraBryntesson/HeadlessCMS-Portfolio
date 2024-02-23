@@ -30,8 +30,8 @@ const Header = () => {
   return (
     <nav>
       <ul className="nav-list">
-        {firstLinks.map((link) => (
-          <li key={link.link}>
+        {firstLinks.map((link, index) => (
+          <li key={link.link + index}>
             <Link className="nav-links" to={link.link}>
               {link.name}
             </Link>
@@ -45,8 +45,8 @@ const Header = () => {
         <p>{about.name}</p>
       </header>
       <ul className="nav-list">
-        {secondLinks.map((link) => (
-          <li key={link.link}>
+        {secondLinks.map((link, index) => (
+          <li key={link.link + index}>
             <Link className="nav-links" to={link.link}>
               {link.name}
             </Link>
@@ -60,14 +60,14 @@ const Header = () => {
         />
         <ul className={`mobile-nav-list ${isMenuOpen ? "open" : ""}`}>
           {links.map((link, index) => (
-            <>
-              <li key={link.link}>
+            <div key={link.link + index}>
+              <li>
                 <Link className="nav-links" to={link.link}>
                   {link.name}
                 </Link>
               </li>
               {index !== links.length - 1 && <hr />}
-            </>
+            </div>
           ))}
         </ul>
       </div>

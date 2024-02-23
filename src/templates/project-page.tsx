@@ -95,7 +95,7 @@ const ProjectPage = (props: ProjectPageProps) => {
             )}
             {/* Display a button with a link to the project URL if available */}
             {project.url && (
-              <PrimaryButton>
+              <PrimaryButton type="button">
                 <a href={project.url} target="__blank">
                   {labels.visitSite}
                 </a>

@@ -71,6 +71,7 @@ export interface Education {
   fromDate: string;
   toDate?: string;
   isEducation: boolean;
+  yearDifference: number | undefined;
 }
 
 export interface ContentfulAbout {

@@ -11,7 +11,7 @@ const Footer = () => {
     <footer>
       <SearchField />
       <p className="copyright-container">
-        `${about.name} © ${new Date().getFullYear()}`
+        {`${about.name} © ${new Date().getFullYear()}`}
       </p>
     </footer>
   );

@@ -2,12 +2,8 @@ import React, { useState, ChangeEvent } from "react";
 import { Index, SerialisedIndexData } from "elasticlunr";
 import { Link } from "gatsby";
 import styled from "styled-components";
-// import lunr from 'lunr';
-
-// Search component
 
 interface SearchResult {
-  // id: string;
   slug: string;
   title: string;
 }
@@ -21,15 +17,12 @@ const Search: React.FC<SearchProps> = ({ searchIndex }) => {
   const [results, setResults] = useState<SearchResult[]>([]);
   let index: any;
 
-  console.log(searchIndex);
-
   const getOrCreateIndex = () => (index ? index : Index.load(searchIndex));
 
   const search = (evt: ChangeEvent<HTMLInputElement>) => {
     const searchTerm = evt.target.value;
     index = getOrCreateIndex();
     setQuery(searchTerm);
-    console.log(index);
     setResults(
       index
         .search(searchTerm, { expand: true })

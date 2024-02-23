@@ -4,7 +4,6 @@ import { PageProps } from "gatsby";
 import Layout from "../components/layout";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useContactQuery } from "../helpers/useContactQuery";
-import { emailJsConfig } from "../helpers/emailjsCredentials";
 import PrimaryButton from "../components/PrimaryButton";
 import { ContefulContact } from "../helpers/types";
 
@@ -17,6 +16,12 @@ const ContactPage: React.FC<PageProps> = () => {
 
   const contactData = useContactQuery();
   const contact: ContefulContact = contactData.contentfulContact;
+
+  const emailJSVariables = {
+    serviceID: process.env.EMAILJS_SERVICE_ID,
+    templateID: process.env.EMAILJS_TEMPLATE_ID,
+    publicKey: process.env.EMAILJS_PUBLIC_KEY,
+  };
 
   // Handle changes in form fields
   const handleChange = (
@@ -35,13 +40,17 @@ const ContactPage: React.FC<PageProps> = () => {
     }
 
     // Use emailjs to send the email
-    if (process.env.EMAILJS_SERVICE_ID && process.env.EMAILJS_TEMPLATE_ID) {
+    if (
+      emailJSVariables.serviceID &&
+      emailJSVariables.templateID &&
+      emailJSVariables.publicKey
+    ) {
       emailjs
         .send(
-          process.env.EMAILJS_SERVICE_ID?.toString(),
-          process.env.EMAILJS_TEMPLATE_ID?.toString(),
+          emailJSVariables?.serviceID.toString(),
+          emailJSVariables?.templateID.toString(),
           formData,
-          process.env.EMAILJS_PUBLIC_KEY
+          emailJSVariables.publicKey
         )
         .then((response) => {
           console.log("Email sent", response);
@@ -51,6 +60,8 @@ const ContactPage: React.FC<PageProps> = () => {
           console.error("Failed to send", error);
           alert("Something went wrong! Please try again");
         });
+    } else {
+      console.error("Something is wrong");
     }
   };
 

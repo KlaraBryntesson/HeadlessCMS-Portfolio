@@ -28,7 +28,7 @@ const IndexPage: React.FC<PageProps> = () => {
         <div className="home-intro-div home-intro-div2">
           <h1 className="home-heading">{home.heading}</h1>
           <p>{home.shortDescription?.shortDescription}</p>
-          <PrimaryButton>
+          <PrimaryButton type="button">
             <Link to="/about">{labels.learnMore}</Link>
           </PrimaryButton>
         </div>
