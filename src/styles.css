@@ -6,94 +6,13 @@
 }
 
 @font-face {
-  font-family: BungeeInline;
-  src: url(../assets/BungeeInline-Regular.ttf);
-}
-
-@font-face {
-  font-family: ChangaOne;
-  src: url(../assets/ChangaOne-Regular.ttf);
-}
-
-@font-face {
-  font-family: DelaGothicOne;
-  src: url(../assets/DelaGothicOne-Regular.ttf);
-}
-
-@font-face {
-  font-family: DMSerifDisplay;
-  src: url(../assets/DMSerifDisplay-Regular.ttf);
-}
-
-@font-face {
   font-family: Kalnia;
   src: url(../assets/Kalnia-Regular.ttf);
 }
 
 @font-face {
-  font-family: Lexendzetta;
-  src: url(../assets/LexendZetta-VariableFont_wght.ttf);
-}
-
-@font-face {
-  font-family: Lilitaone;
-  src: url(../assets/LilitaOne-Regular.ttf);
-}
-
-@font-face {
-  font-family: Lustria;
-  src: url(../assets/Lustria-Regular.ttf);
-}
-
-@font-face {
-  font-family: Monoton;
-  src: url(../assets/Monoton-Regular.ttf);
-}
-
-@font-face {
   font-family: Montserrat;
   src: url(../assets/Montserrat-Light.ttf);
-}
-
-@font-face {
-  font-family: Paytoneone;
-  src: url(../assets/PaytoneOne-Regular.ttf);
-}
-
-.first {
-  font-family: Afacad;
-}
-
-.second {
-  font-family: BungeeInline;
-}
-
-.third {
-  font-family: ChangaOne;
-}
-.fourth {
-  font-family: DelaGothicOne;
-}
-.fifth {
-  font-family: DMSerifDisplay;
-}
-.sixth {
-  font-family: Kalnia;
-}
-.seventh {
-  font-family: Lexendzetta;
-}
-.eighth {
-  font-family: Lilitaone;
-}
-.nineth {
-  font-family: Monoton;
-}
-.tenth {
-  font-family: Paytoneone;
-}
-.eleventh {
-  font-family: Lustria;
 }
 
 :root {
@@ -154,7 +73,6 @@
   --fontSize-10: 7rem;
   --fontSize-11: 10rem;
   --color-dark-orange: #c14700;
-  /* --color-dark-orange: #ff5e00; */
   --color-text-orange: #913500;
   --color-darker-text: #672600;
   --color-pink: #d31a70;

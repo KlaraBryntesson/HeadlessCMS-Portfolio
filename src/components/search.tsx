@@ -42,7 +42,6 @@ const Search: React.FC<SearchProps> = ({ searchIndex }) => {
         {results.map((page, index) => (
           <li key={index}>
             <Link to={"/" + page.slug}>{page.title}</Link>
-            {/* {": " + page.tags.join(",")} */}
           </li>
         ))}
       </ul>
