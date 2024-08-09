@@ -93,8 +93,8 @@ const AboutPage: React.FC<PageProps> = () => {
 
   const doubledSkills = about.skills && [
     ...about.skills,
-    ...about.skills,
-    ...about.skills,
+    // ...about.skills,
+    // ...about.skills,
   ];
 
   return (
@@ -193,7 +193,8 @@ const scroll = keyframes`
   transform: translateX(0);
 }
 100% {
-  transform: translateX(-35.9%);
+transform: translateX(-20%);
+  /* transform: translateX(-35.9%); */
 }`;
 
 const AboutSkillsContainer = styled.div`
@@ -212,23 +213,29 @@ const AboutSkillsContainer = styled.div`
 
   @media (max-width: 850px) {
     font-size: var(--fontSize-1);
-    font-weight: var(--fontWeight-bold);
   }
 `;
 
 const AboutSkillsInner = styled.div`
   display: inline-flex;
-  animation: ${scroll} 20s linear infinite;
+  /* animation: ${scroll} 20s linear infinite; */
   justify-content: space-around;
-  width: calc(300% + 1rem);
+  /* width: 200%; */
+  width: 100%;
 `;
 
 const AboutSkills = styled.p`
+  font-size: var(--fontSize-2);
   margin-bottom: 0;
-  display: inline-block;
+  /* display: inline-block; */
   padding: 0 1rem;
 
-  @media (max-width: 650px) {
+  @media (max-width: 1050px) {
+    font-size: var(--fontSize-1);
+    padding: 0 0.5rem;
+  }
+
+  @media (max-width: 850px) {
     display: none;
   }
 `;

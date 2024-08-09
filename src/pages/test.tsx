@@ -36,23 +36,27 @@ const TestPage: React.FC<PageProps> = () => {
         </Menu>
       </Navbar>
       <AnimatePage>
-        <IntroContainer className="intro-container">
-          <div className="home-intro-div home-intro-div1">
-            <div className=" home-image-div">
-              <ProjectImage image={image} />
+        <>
+          <IntroContainer>
+            <div className="home-intro-div home-intro-div1">
+              <div className=" home-image-div">
+                <ProjectImage image={image} />
+              </div>
             </div>
-          </div>
-          <div className="home-intro-div home-intro-div2">
-            <h1 className="home-heading">{home.heading}</h1>
-            <p>{home.shortDescription?.shortDescription}</p>
+            <div className="home-intro-div home-intro-div2">
+              <h1 className="home-heading">{home.heading}</h1>
+              <p>{home.shortDescription?.shortDescription}</p>
+            </div>
+          </IntroContainer>
+          <BlackBox>
+            <ScrollButton>Scroll down</ScrollButton>
+          </BlackBox>
+          <BeigeBox>
             <PrimaryButton type="button">
               <Link to="/about">{labels.learnMore}</Link>
             </PrimaryButton>
-            <PrimaryButton type="button">
-              <Link to="/test">Testsida</Link>
-            </PrimaryButton>
-          </div>
-        </IntroContainer>
+          </BeigeBox>
+        </>
       </AnimatePage>
     </MainTest>
   );
@@ -102,9 +106,10 @@ const Menu = styled.ul`
 `;
 
 const IntroContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
   flex-direction: row;
-  min-height: 600px;
-  padding-top: var(--spacing-10);
+  height: 60vh;
 
   @media (max-width: 1050px) {
     min-height: 500px;
@@ -122,17 +127,46 @@ const IntroContainer = styled.div`
   }
 `;
 
+const BlackBox = styled.div`
+  background-color: var(--color-black);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 170px;
+`;
+
+const BeigeBox = styled.div`
+  background-color: var(--color-beige);
+  height: 100vh;
+`;
+
 const Button = styled.button`
   background-color: var(--color-yellow);
   border: none;
   border-radius: 30px;
   color: var(--color-darker-text);
-  /* font-weight: var(--fontWeight-bold); */
   margin: 0;
   transition: 0.2s ease-in;
   text-transform: none;
   width: 120px;
   height: 30px;
+
+  &:hover {
+    background-color: var(--color-light-pink);
+  }
+`;
+
+const ScrollButton = styled.button`
+  background-color: var(--color-yellow);
+  border: none;
+  border-radius: 50%;
+  color: var(--color-darker-text);
+  margin: 0;
+  margin-bottom: -30px;
+  transition: 0.2s ease-in;
+  text-transform: none;
+  height: 120px;
+  width: 120px;
 
   &:hover {
     background-color: var(--color-light-pink);
