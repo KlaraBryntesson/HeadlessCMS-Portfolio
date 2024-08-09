@@ -8,6 +8,7 @@ import { getImage, ImageDataLike } from "gatsby-plugin-image";
 import ProjectImage from "../components/ProjectImage";
 import { useLabelsQuery } from "../helpers/useLabelsQuery";
 import { useProjectsQuery } from "../helpers/useProjectsQuery";
+import AnimatePage from "../components/AnimatePage";
 
 const ProjectsPage: React.FC<PageProps> = () => {
   const labelsData = useLabelsQuery();
@@ -47,76 +48,82 @@ const ProjectsPage: React.FC<PageProps> = () => {
 
   return (
     <Layout metaData={projectPage.metaData} title={projectPage.pageTitle}>
-      <div className="intro-container projects-intro-container">
-        <div className="intro-div">
-          <div className="projects-button-container">
-            <PrimaryButton type="button" onClick={scrollDown}>
-              {labels.explore}
-            </PrimaryButton>
+      <AnimatePage>
+        <div>
+          <div className="intro-container projects-intro-container">
+            <div className="intro-div">
+              <div className="projects-button-container">
+                <PrimaryButton type="button" onClick={scrollDown}>
+                  {labels.explore}
+                </PrimaryButton>
+              </div>
+            </div>
+            <div className="intro-div projects-intro-div">
+              <p>{projectPage.projectIntro.projectIntro}</p>
+            </div>
           </div>
+
+          {/* Categories for filtering projects */}
+          <div className="projects-list-categories">
+            {categories.map((categoryOption) => (
+              <PrimaryButton
+                type="button"
+                key={categoryOption}
+                onClick={() => setSelectedCategory(categoryOption)}
+                active={Boolean(selectedCategory === categoryOption)}
+              >
+                {categoryOption}
+              </PrimaryButton>
+            ))}
+          </div>
+
+          {/* List of projects */}
+          <ul id="projects" className="new-projects-list">
+            {filteredProjects
+              .sort((a, b) => a.order - b.order)
+              .map((project) => {
+                const image = getImage(
+                  project.image.gatsbyImageData as ImageDataLike
+                );
+                const date = new Date(project.created as string);
+                const year = date.getFullYear();
+                const month = date.toLocaleString("en-US", { month: "short" });
+
+                return (
+                  <li key={project.title} className="new-projects-list-item">
+                    <Link to={`/${project.slug}`} itemProp="url">
+                      <section className="new-projects-list-wrapper">
+                        <div className="new-projects-list-child image-date-wrapper">
+                          <div className="new-projects-image-container">
+                            <ProjectImage
+                              className="new-projects-list-image"
+                              image={image}
+                              alt={project.image.title}
+                            />
+                          </div>
+                        </div>
+                        <div className="new-projects-list-child">
+                          <div className="projects-description-container">
+                            <div className="date-container">
+                              <span>{month} /</span>
+                              <span> {year}</span>
+                              <hr />
+                            </div>
+                            <h2>{project.title}</h2>
+                            <p className="project-description">
+                              {project.shortDescription.shortDescription}
+                            </p>
+                          </div>
+                        </div>
+                      </section>
+                    </Link>
+                    <hr className="projects-list-divider" />
+                  </li>
+                );
+              })}
+          </ul>
         </div>
-        <div className="intro-div projects-intro-div">
-          <p>{projectPage.projectIntro.projectIntro}</p>
-        </div>
-      </div>
-
-      {/* Categories for filtering projects */}
-      <div className="projects-list-categories">
-        {categories.map((categoryOption) => (
-          <PrimaryButton
-            type="button"
-            key={categoryOption}
-            onClick={() => setSelectedCategory(categoryOption)}
-            active={Boolean(selectedCategory === categoryOption)}
-          >
-            {categoryOption}
-          </PrimaryButton>
-        ))}
-      </div>
-
-      {/* List of projects */}
-      <ul id="projects" className="new-projects-list">
-        {filteredProjects.map((project) => {
-          const image = getImage(
-            project.images[0].gatsbyImageData as ImageDataLike
-          );
-          const date = new Date(project.created as string);
-          const year = date.getFullYear();
-          const month = date.toLocaleString("en-US", { month: "short" });
-
-          return (
-            <li key={project.title} className="new-projects-list-item">
-              <Link to={`/${project.slug}`} itemProp="url">
-                <section className="new-projects-list-wrapper">
-                  <div className="new-projects-list-child image-date-wrapper">
-                    <div className="new-projects-image-container">
-                      <ProjectImage
-                        className="new-projects-list-image"
-                        image={image}
-                        alt={project.images[0].title}
-                      />
-                    </div>
-                  </div>
-                  <div className="new-projects-list-child">
-                    <div className="projects-description-container">
-                      <div className="date-container">
-                        <span>{month} /</span>
-                        <span> {year}</span>
-                        <hr />
-                      </div>
-                      <h2>{project.title}</h2>
-                      <p className="project-description">
-                        {project.shortDescription.shortDescription}
-                      </p>
-                    </div>
-                  </div>
-                </section>
-              </Link>
-              <hr className="projects-list-divider" />
-            </li>
-          );
-        })}
-      </ul>
+      </AnimatePage>
     </Layout>
   );
 };

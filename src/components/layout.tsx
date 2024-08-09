@@ -16,6 +16,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
     <div>
       <Helmet>
         <title>{`Klara Bryntesson | ${props.title}`}</title>
+        <link rel="icon" href="../../assets/smile.png" />
         <meta name="description" content={props.metaData} />
       </Helmet>
       <Header />

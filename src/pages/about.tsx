@@ -4,9 +4,10 @@ import { ContentfulAbout, Education } from "../helpers/types";
 import Layout from "../components/layout";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { ImageDataLike, getImage } from "gatsby-plugin-image";
+import AnimatePage from "../components/AnimatePage";
 import ProjectImage from "../components/ProjectImage";
 import { useAboutQuery } from "../helpers/useAboutQuery";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface Experience {
   title: string;
@@ -31,7 +32,7 @@ const ExperienceComponent: React.FC<{ experience: Experience }> = ({
           </span>
         </ExperienceLocationDiv>
       </ExperienceHeader>
-      <p>{experience.description}</p>
+      <StyledParagraph>{experience.description}</StyledParagraph>
       <hr />
     </li>
   );
@@ -90,49 +91,59 @@ const AboutPage: React.FC<PageProps> = () => {
   educationData.sort((a, b) => a.yearDifference - b.yearDifference);
   workData.sort((a, b) => a.yearDifference - b.yearDifference);
 
+  const doubledSkills = about.skills && [
+    ...about.skills,
+    ...about.skills,
+    ...about.skills,
+  ];
+
   return (
     <Layout metaData={about.metaData} title={about.pageTitle}>
-      <AboutIntroContainer className="intro-container">
-        <ImageDiv>
-          <ProjectImage className="about-image" image={image} />
-        </ImageDiv>
-        <AboutIntroDiv className="intro-div">
-          <AboutIntro>{about.biography}</AboutIntro>
-        </AboutIntroDiv>
-      </AboutIntroContainer>
-      <AboutSkillsContainer>
-        {about.skills &&
-          about.skills.map((skill, index) => (
-            <div key={index}>
-              <AboutSkills>{skill}</AboutSkills>
-            </div>
-          ))}
-      </AboutSkillsContainer>
-      <DescriptionContainer>
-        {about.description &&
-          documentToReactComponents(JSON.parse(about.description.raw))}
-      </DescriptionContainer>
-      <ExperienceContainer>
-        <ExperienceWrapper>
-          <h2>Education</h2>
-          <ul>
-            {educationData.map((education) => (
-              <ExperienceComponent
-                key={education.title}
-                experience={education}
-              />
-            ))}
-          </ul>
-        </ExperienceWrapper>
-        <ExperienceWrapper>
-          <h2>Work experience</h2>
-          <ul>
-            {workData.map((work) => (
-              <ExperienceComponent key={work.title} experience={work} />
-            ))}
-          </ul>
-        </ExperienceWrapper>
-      </ExperienceContainer>
+      <AnimatePage>
+        <div>
+          <AboutIntroContainer className="intro-container">
+            <ImageDiv>
+              <ProjectImage className="about-image" image={image} />
+            </ImageDiv>
+            <AboutIntroDiv>
+              <AboutIntro>{about.biography}</AboutIntro>
+            </AboutIntroDiv>
+          </AboutIntroContainer>
+          <AboutSkillsContainer>
+            <AboutSkillsInner>
+              {doubledSkills &&
+                doubledSkills.map((skill, index) => (
+                  <AboutSkills key={index}>{skill}</AboutSkills>
+                ))}
+            </AboutSkillsInner>
+          </AboutSkillsContainer>
+          <DescriptionContainer>
+            {about.description &&
+              documentToReactComponents(JSON.parse(about.description.raw))}
+          </DescriptionContainer>
+          <ExperienceContainer>
+            <ExperienceWrapper>
+              <h2>Education</h2>
+              <ul>
+                {educationData.map((education) => (
+                  <ExperienceComponent
+                    key={education.title}
+                    experience={education}
+                  />
+                ))}
+              </ul>
+            </ExperienceWrapper>
+            <ExperienceWrapper>
+              <h2>Work experience</h2>
+              <ul>
+                {workData.map((work) => (
+                  <ExperienceComponent key={work.title} experience={work} />
+                ))}
+              </ul>
+            </ExperienceWrapper>
+          </ExperienceContainer>
+        </div>
+      </AnimatePage>
     </Layout>
   );
 };
@@ -147,6 +158,8 @@ const AboutIntroContainer = styled.div`
 
 const AboutIntroDiv = styled.div`
   background-color: var(--color-orange);
+  display: flex;
+  width: 50%;
 
   @media (max-width: 650px) {
     padding: var(--spacing-10) 0;
@@ -175,6 +188,14 @@ const AboutIntro = styled.p`
   }
 `;
 
+const scroll = keyframes`
+0% {
+  transform: translateX(0);
+}
+100% {
+  transform: translateX(-35.9%);
+}`;
+
 const AboutSkillsContainer = styled.div`
   background-color: var(--color-pink);
   color: var(--color-beige);
@@ -183,6 +204,11 @@ const AboutSkillsContainer = styled.div`
   justify-content: space-around;
   min-height: 50px;
   padding: 30px 0;
+  position: relative;
+  width: 100%;
+
+  overflow: hidden;
+  white-space: nowrap;
 
   @media (max-width: 850px) {
     font-size: var(--fontSize-1);
@@ -190,8 +216,17 @@ const AboutSkillsContainer = styled.div`
   }
 `;
 
+const AboutSkillsInner = styled.div`
+  display: inline-flex;
+  animation: ${scroll} 20s linear infinite;
+  justify-content: space-around;
+  width: calc(300% + 1rem);
+`;
+
 const AboutSkills = styled.p`
   margin-bottom: 0;
+  display: inline-block;
+  padding: 0 1rem;
 
   @media (max-width: 650px) {
     display: none;
@@ -214,7 +249,10 @@ const ImageDiv = styled.div`
 `;
 
 const DescriptionContainer = styled.div`
-  padding: var(--spacing-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-20);
 
   p {
     max-width: 800px;
@@ -225,6 +263,10 @@ const DescriptionContainer = styled.div`
     font-family: var(--font-heading);
     font-size: var(--fontSize-4);
     line-height: normal;
+  }
+
+  @media (max-width: 650px) {
+    padding: var(--spacing-16);
   }
 
   @media (max-width: 500px) {
@@ -287,8 +329,13 @@ const ExperienceHeader = styled.div`
 
   > h3 {
     line-height: normal;
+    margin-top: var(--spacing-8);
     text-transform: uppercase;
   }
+`;
+
+const StyledParagraph = styled.p`
+  margin-bottom: var(--spacing-8);
 `;
 
 const ExperienceLocationDiv = styled.div`

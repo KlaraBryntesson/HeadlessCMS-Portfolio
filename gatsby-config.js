@@ -53,5 +53,6 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-typescript",
+    "gatsby-plugin-react-helmet",
   ],
 };

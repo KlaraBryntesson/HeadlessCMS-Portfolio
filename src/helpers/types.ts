@@ -34,6 +34,7 @@ export interface Project {
   url: string;
   metaData: string;
   participants?: string[];
+  order: number;
 }
 
 export interface AllContentfulProjects {

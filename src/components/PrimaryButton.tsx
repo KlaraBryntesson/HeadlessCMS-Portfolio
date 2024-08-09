@@ -27,7 +27,6 @@ const Button = styled.button<StyledProps>`
   background-color: ${(props) =>
     props.selected ? `var(--color-orange)` : `var(--color-lighter-pink)`};
   border: none;
-  /* border: 2px solid var(--color-dark-orange); */
   color: var(--color-darker-text);
   font-weight: var(--fontWeight-bold);
   transition: 0.2s ease-in;

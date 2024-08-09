@@ -4,8 +4,8 @@ import { use404Query } from "../helpers/use404Query";
 import PrimaryButton from "../components/PrimaryButton";
 import { useLabelsQuery } from "../helpers/useLabelsQuery";
 import { Labels } from "../helpers/types";
-import SearchField from "../components/searchfield";
 import styled from "styled-components";
+import Search from "../components/search";
 
 const NotFoundPage: React.FC<PageProps> = () => {
   const wrongQuery = use404Query();
@@ -23,7 +23,7 @@ const NotFoundPage: React.FC<PageProps> = () => {
             <Link to="/">{labels.backToHome}</Link>
           </PrimaryButton>
         </div>
-        <SearchField />
+        <Search />
       </StyledDiv>
     </main>
   );

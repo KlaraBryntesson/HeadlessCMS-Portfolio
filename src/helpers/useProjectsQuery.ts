@@ -32,6 +32,7 @@ export const projectsQuery = graphql`
         techStack
         title
         url
+        order
       }
     }
     contentfulProjectPage {

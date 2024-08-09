@@ -31,6 +31,7 @@ const Button = styled.button<StyledButtonProps>`
   justify-content: center;
   align-items: center;
   height: 40px;
+  margin: 0.5rem;
   position: absolute;
   top: 50%;
   outline: none;
@@ -40,7 +41,7 @@ const Button = styled.button<StyledButtonProps>`
   font-weight: 700;
   transition: background-color ease-in-out 0.5ms;
   transform: translateY(-50%);
-  ${(props) => (props.direction === "prev" ? "left: 10px;" : "right: 10px;")};
+  ${(props) => (props.direction === "prev" ? "left: 0px;" : "right: 0px;")};
 
   &:hover {
     background-color: var(--color-pink);
