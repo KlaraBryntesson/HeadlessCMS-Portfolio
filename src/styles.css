@@ -375,7 +375,7 @@ nav {
 
 .home-intro-div2 p {
   margin-top: var(--spacing-4);
-  width: 90%;
+  width: 75%;
 }
 
 .home-heading {
@@ -639,6 +639,12 @@ nav {
   }
 }
 
+@media (max-width: 1200px) {
+  .home-intro-div2 p {
+    width: 80%;
+  }
+}
+
 @media (max-width: 1050px) {
   h1 {
     font-size: var(--fontSize-9);
@@ -646,6 +652,7 @@ nav {
 
   .home-intro-div2 p {
     font-size: var(--fontSize-0);
+    width: 90%;
   }
 
   .home-heading {

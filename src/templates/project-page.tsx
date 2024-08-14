@@ -205,6 +205,8 @@ const Wrapper = styled.div`
   display: flex;
   align-items: baseline;
   margin-bottom: 0.4rem;
+  width: 90%;
+  align-self: center;
 `;
 
 const List = styled.ul`

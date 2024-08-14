@@ -273,7 +273,7 @@ const DescriptionContainer = styled.div`
   }
 
   @media (max-width: 650px) {
-    padding: var(--spacing-16);
+    padding: var(--spacing-10);
   }
 
   @media (max-width: 500px) {
