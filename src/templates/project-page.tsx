@@ -206,7 +206,10 @@ const Wrapper = styled.div`
   align-items: baseline;
   margin-bottom: 0.4rem;
   width: 90%;
-  align-self: center;
+
+  @media (max-width: 850px) {
+    align-self: center;
+  }
 `;
 
 const List = styled.ul`
